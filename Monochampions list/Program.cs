@@ -9,35 +9,40 @@ namespace Monochampions_list
 		static void Main(string[] args)
 		{
 			Dictionary<string, int> champdict = new Dictionary<string, int>();
-			champdict.Add("karthus", 2941);
-			champdict.Add("skarner", 2208);
+			champdict.Add("karthus", 3655);
+			champdict.Add("skarner", 2692);
+			champdict.Add("rammus", 2008);
+			champdict.Add("urgot", 1994);
+			champdict.Add("swain", 1935);
+			champdict.Add("nunu", 1888);
 			champdict.Add("hecarim", 1700);
-			champdict.Add("swain", 1568);
-			champdict.Add("urgot", 1559);
-			champdict.Add("rammus", 1502);
-			champdict.Add("nunu", 1467);
 			champdict.Add("zilean", 1395);
+			champdict.Add("annie", 1367);
 			champdict.Add("udyr", 1316);
-			champdict.Add("singed", 1220);
-			champdict.Add("annie", 1016);
+			champdict.Add("singed", 1286);
 			champdict.Add("kog'maw", 953);
+			champdict.Add("aurelionsol", 851);
+			champdict.Add("yorick", 794);
+			champdict.Add("quinn", 759);
+			champdict.Add("ivern", 714);
 			champdict.Add("heimerdinger", 710);
-			champdict.Add("aurelionsol", 694);
-			champdict.Add("ivern", 630);
-			champdict.Add("quinn", 626);
+			champdict.Add("dr.mundo", 616);
 			champdict.Add("shyvanna", 603);
 			champdict.Add("tahmkench", 600);
-			champdict.Add("yorick", 555);
+			champdict.Add("galio", 599);
+			champdict.Add("sion", 562);
 			champdict.Add("fiddlesticks", 514);
-			champdict.Add("dr.mundo", 450);
 			champdict.Add("evelynn", 442);
 			champdict.Add("warwick", 417);
+			champdict.Add("nasus", 358);
 			champdict.Add("rengar", 353);
 			champdict.Add("cho'gath", 324);
-			champdict.Add("nasus", 314);
 			champdict.Add("rek'sai", 283);
 			champdict.Add("vi", 259);
 			champdict.Add("kled", 254);
+			champdict.Add("xinzhao", 220);
+			champdict.Add("malzahar", 188);
+			champdict.Add("brand", 181);
 			champdict.Add("taliyah", 175);
 			champdict.Add("amumu", 169);
 			champdict.Add("kayle", 163);
@@ -46,22 +51,29 @@ namespace Monochampions_list
 			champdict.Add("azir", 135);
 			champdict.Add("ziggs", 134);
 			champdict.Add("wukong", 133);
+			champdict.Add("fiora", 129);
 			champdict.Add("lissandra", 125);
 			champdict.Add("anivia", 102);
 			champdict.Add("olaf", 101);
 			champdict.Add("braum", 100);
-			champdict.Add("galio", 99);
 			champdict.Add("poppy", 94);
-			champdict.Add("xinzhao", 90);
 			champdict.Add("zac", 84);
 			champdict.Add("rumble", 80);
-			champdict.Add("sion", 71);
 			champdict.Add("illaoi", 67);
 			champdict.Add("khazix", 50);
 			champdict.Add("masteryi", 20);
 
+
 			int[,] championsRole = new int[100000, 5];
 			championsRole[champdict["karthus"], 0] = 1;
+			championsRole[champdict["fiora"], 0] = 2;
+			championsRole[champdict["fiora"], 1] = 1;
+			championsRole[champdict["brand"], 1] = 2;
+			championsRole[champdict["brand"], 3] = 1;
+			championsRole[champdict["malzahar"], 0] = 1;
+			championsRole[champdict["malzahar"], 1] = 2;
+			championsRole[champdict["malzahar"], 2] = 1;
+			championsRole[champdict["malzahar"], 3] = 1;
 			championsRole[champdict["karthus"], 1] = 1;
 			championsRole[champdict["karthus"], 2] = 1;
 			championsRole[champdict["karthus"], 3] = 1;
@@ -176,9 +188,9 @@ namespace Monochampions_list
 			Console.WriteLine("BRONZE:");
 			string[] enterchamp = Console.ReadLine().Split(" ");
 
-		;
+			;
 			int[] champScore = new int[10];
-			for(int i = 0; i < 10; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				champScore[i] = champdict[enterchamp[i]];
 			}
@@ -187,7 +199,7 @@ namespace Monochampions_list
 			int[] champtop = new int[10];
 			int contador = 0;
 			for (int i = 0; i < 10; i++)
-			{	
+			{
 				if (championsRole[champScore[i], 0] == 2)
 				{
 					champtopmain[i] = contador + 1;
@@ -244,16 +256,16 @@ namespace Monochampions_list
 			}
 			for (int i = 0; i < 10; i++)
 			{
-				if (champtop[i] == divisor-notMains+1) { champdict[enterchamp[i]] += ((divisor-(divisor-notMains))*100) / divisor; }
-				if (champtop[i] == divisor-notMains+2) { champdict[enterchamp[i]] += ((divisor-(divisor-notMains))*100-100) / divisor; }
-				if (champtop[i] == divisor-notMains+3) { champdict[enterchamp[i]] += ((divisor-(divisor-notMains))*100-200) / divisor; }
-				if (champtop[i] == divisor-notMains+4) { champdict[enterchamp[i]] += ((divisor-(divisor-notMains))*100-300) / divisor; }
-				if (champtop[i] == divisor-notMains+5) { champdict[enterchamp[i]] += ((divisor-(divisor-notMains))*100-400) / divisor; }
-				if (champtop[i] == divisor-notMains+6) { champdict[enterchamp[i]] += ((divisor-(divisor-notMains))*100-500) / divisor; }
-				if (champtop[i] == divisor-notMains+7) { champdict[enterchamp[i]] += ((divisor-(divisor-notMains))*100-600) / divisor; }
-				if (champtop[i] == divisor-notMains+8) { champdict[enterchamp[i]] += ((divisor-(divisor-notMains))*100-700) / divisor; }
-				if (champtop[i] == divisor-notMains+9) { champdict[enterchamp[i]] += ((divisor-(divisor-notMains))*100-800) / divisor; }
-				if (champtop[i] == divisor-notMains+10) { champdict[enterchamp[i]] += ((divisor-(divisor-notMains))*100-900) / divisor; }
+				if (champtop[i] == divisor - notMains + 1) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100) / divisor; }
+				if (champtop[i] == divisor - notMains + 2) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 100) / divisor; }
+				if (champtop[i] == divisor - notMains + 3) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 200) / divisor; }
+				if (champtop[i] == divisor - notMains + 4) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 300) / divisor; }
+				if (champtop[i] == divisor - notMains + 5) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 400) / divisor; }
+				if (champtop[i] == divisor - notMains + 6) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 500) / divisor; }
+				if (champtop[i] == divisor - notMains + 7) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 600) / divisor; }
+				if (champtop[i] == divisor - notMains + 8) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 700) / divisor; }
+				if (champtop[i] == divisor - notMains + 9) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 800) / divisor; }
+				if (champtop[i] == divisor - notMains + 10) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 900) / divisor; }
 			}
 
 			int[] champmidmain = new int[10];
@@ -325,7 +337,7 @@ namespace Monochampions_list
 				if (champmid[i] == divisor - notMains + 8) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 700) / divisor; }
 				if (champmid[i] == divisor - notMains + 9) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 800) / divisor; }
 				if (champmid[i] == divisor - notMains + 10) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 900) / divisor; }
-		}
+			}
 
 
 			int[] champadcmain = new int[10];
@@ -372,8 +384,8 @@ namespace Monochampions_list
 			if (champadc[8] > 0) { notMains += 1; }
 			if (champadc[9] > 0) { notMains += 1; }
 
-			
-			
+
+
 			for (int i = 0; i < 10; i++)
 			{
 				if (champadcmain[i] == 1) { champdict[enterchamp[i]] += 100; }
@@ -447,8 +459,8 @@ namespace Monochampions_list
 			if (champsup[8] > 0) { notMains += 1; }
 			if (champsup[9] > 0) { notMains += 1; }
 
-			
-			
+
+
 			for (int i = 0; i < 10; i++)
 			{
 				if (champsupmain[i] == 1) { champdict[enterchamp[i]] += 100; }
@@ -482,9 +494,9 @@ namespace Monochampions_list
 			int[] champjgmain = new int[10];
 			int[] champjg = new int[10];
 			contador = 0;
-			for(int i = 0; i < 10; i++)
+			for (int i = 0; i < 10; i++)
 			{
-				if(championsRole[champScore[i], 4] == 2)
+				if (championsRole[champScore[i], 4] == 2)
 				{
 					champjgmain[i] = contador + 1;
 					contador += 1;
@@ -511,7 +523,7 @@ namespace Monochampions_list
 			if (champjg[7] > 0 || champjgmain[7] > 0) { divisor += 1; }
 			if (champjg[8] > 0 || champjgmain[8] > 0) { divisor += 1; }
 			if (champjg[9] > 0 || champjgmain[9] > 0) { divisor += 1; }
-	
+
 			if (champjg[0] > 0) { notMains += 1; }
 			if (champjg[1] > 0) { notMains += 1; }
 			if (champjg[2] > 0) { notMains += 1; }
@@ -522,23 +534,23 @@ namespace Monochampions_list
 			if (champjg[7] > 0) { notMains += 1; }
 			if (champjg[8] > 0) { notMains += 1; }
 			if (champjg[9] > 0) { notMains += 1; }
-			
-			
-			
-			for(int i = 0; i < 10; i++)
+
+
+
+			for (int i = 0; i < 10; i++)
 			{
 				if (champjgmain[i] == 1) { champdict[enterchamp[i]] += 100; }
-				if (champjgmain[i] == 2) { champdict[enterchamp[i]] += 100*(divisor-1)/divisor; }
-				if (champjgmain[i] == 3) { champdict[enterchamp[i]] += 100*(divisor-2)/divisor; }
-				if (champjgmain[i] == 4) { champdict[enterchamp[i]] += 100*(divisor-3)/divisor; }
-				if (champjgmain[i] == 5) { champdict[enterchamp[i]] += 100*(divisor-4)/divisor; }
-				if (champjgmain[i] == 6) { champdict[enterchamp[i]] += 100*(divisor-5)/divisor; }
-				if (champjgmain[i] == 7) { champdict[enterchamp[i]] += 100*(divisor-6)/divisor; }
-				if (champjgmain[i] == 8) { champdict[enterchamp[i]] += 100*(divisor-7)/divisor; }
-				if (champjgmain[i] == 9) { champdict[enterchamp[i]] += 100*(divisor-8)/divisor; }
-				if (champjgmain[i] == 10) { champdict[enterchamp[i]] += 100*(divisor-9)/divisor; }
+				if (champjgmain[i] == 2) { champdict[enterchamp[i]] += 100 * (divisor - 1) / divisor; }
+				if (champjgmain[i] == 3) { champdict[enterchamp[i]] += 100 * (divisor - 2) / divisor; }
+				if (champjgmain[i] == 4) { champdict[enterchamp[i]] += 100 * (divisor - 3) / divisor; }
+				if (champjgmain[i] == 5) { champdict[enterchamp[i]] += 100 * (divisor - 4) / divisor; }
+				if (champjgmain[i] == 6) { champdict[enterchamp[i]] += 100 * (divisor - 5) / divisor; }
+				if (champjgmain[i] == 7) { champdict[enterchamp[i]] += 100 * (divisor - 6) / divisor; }
+				if (champjgmain[i] == 8) { champdict[enterchamp[i]] += 100 * (divisor - 7) / divisor; }
+				if (champjgmain[i] == 9) { champdict[enterchamp[i]] += 100 * (divisor - 8) / divisor; }
+				if (champjgmain[i] == 10) { champdict[enterchamp[i]] += 100 * (divisor - 9) / divisor; }
 			}
-			for(int i = 0; i<10; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				if (champjg[i] == divisor - notMains + 1) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100) / divisor; }
 				if (champjg[i] == divisor - notMains + 2) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 100) / divisor; }
@@ -554,7 +566,7 @@ namespace Monochampions_list
 					champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 900) / divisor;
 				}
 			}
-	
+
 			var sortedDict = from entry in champdict orderby entry.Value descending select entry;
 			foreach (var x in sortedDict)
 			{
@@ -676,14 +688,14 @@ namespace Monochampions_list
 			championsRole[champdict["masteryi"], 4] = 2;
 			enterchamp = Console.ReadLine().Split(" ");
 
-			 champScore = new int[10];
+			champScore = new int[10];
 			for (int i = 0; i < 10; i++)
 			{
 				champScore[i] = champdict[enterchamp[i]];
 			}
 
-			 champtopmain = new int[10];
-			 champtop = new int[10];
+			champtopmain = new int[10];
+			champtop = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -755,8 +767,8 @@ namespace Monochampions_list
 				if (champtop[i] == divisor - notMains + 10) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 900) / divisor; }
 			}
 
-			 champmidmain = new int[10];
-			 champmid = new int[10];
+			champmidmain = new int[10];
+			champmid = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -827,8 +839,8 @@ namespace Monochampions_list
 			}
 
 
-			 champadcmain = new int[10];
-			 champadc = new int[10];
+			champadcmain = new int[10];
+			champadc = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -902,8 +914,8 @@ namespace Monochampions_list
 					champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 900) / divisor;
 				}
 			}
-			 champsupmain = new int[10];
-			 champsup = new int[10];
+			champsupmain = new int[10];
+			champsup = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -978,8 +990,8 @@ namespace Monochampions_list
 				}
 			}
 
-			 champjgmain = new int[10];
-			 champjg = new int[10];
+			champjgmain = new int[10];
+			champjg = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -1173,14 +1185,14 @@ namespace Monochampions_list
 			championsRole[champdict["masteryi"], 4] = 2;
 			enterchamp = Console.ReadLine().Split(" ");
 
-			 champScore = new int[10];
+			champScore = new int[10];
 			for (int i = 0; i < 10; i++)
 			{
 				champScore[i] = champdict[enterchamp[i]];
 			}
 
-			 champtopmain = new int[10];
-			 champtop = new int[10];
+			champtopmain = new int[10];
+			champtop = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -1202,7 +1214,7 @@ namespace Monochampions_list
 			}
 
 			divisor = 0;
-			 notMains = 0;
+			notMains = 0;
 			if (champtop[0] > 0 || champtopmain[0] > 0) { divisor += 1; }
 			if (champtop[1] > 0 || champtopmain[1] > 0) { divisor += 1; }
 			if (champtop[2] > 0 || champtopmain[2] > 0) { divisor += 1; }
@@ -1252,8 +1264,8 @@ namespace Monochampions_list
 				if (champtop[i] == divisor - notMains + 10) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 900) / divisor; }
 			}
 
-			 champmidmain = new int[10];
-			 champmid = new int[10];
+			champmidmain = new int[10];
+			champmid = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -1324,8 +1336,8 @@ namespace Monochampions_list
 			}
 
 
-			 champadcmain = new int[10];
-			 champadc = new int[10];
+			champadcmain = new int[10];
+			champadc = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -1399,8 +1411,8 @@ namespace Monochampions_list
 					champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 900) / divisor;
 				}
 			}
-			 champsupmain = new int[10];
-			 champsup = new int[10];
+			champsupmain = new int[10];
+			champsup = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -1475,8 +1487,8 @@ namespace Monochampions_list
 				}
 			}
 
-			 champjgmain = new int[10];
-			 champjg = new int[10];
+			champjgmain = new int[10];
+			champjg = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -1669,14 +1681,14 @@ namespace Monochampions_list
 			championsRole[champdict["masteryi"], 4] = 2;
 			enterchamp = Console.ReadLine().Split(" ");
 
-			 champScore = new int[10];
+			champScore = new int[10];
 			for (int i = 0; i < 10; i++)
 			{
 				champScore[i] = champdict[enterchamp[i]];
 			}
 
-			 champtopmain = new int[10];
-			 champtop = new int[10];
+			champtopmain = new int[10];
+			champtop = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -1698,7 +1710,7 @@ namespace Monochampions_list
 			}
 
 			divisor = 0;
-			 notMains = 0;
+			notMains = 0;
 			if (champtop[0] > 0 || champtopmain[0] > 0) { divisor += 1; }
 			if (champtop[1] > 0 || champtopmain[1] > 0) { divisor += 1; }
 			if (champtop[2] > 0 || champtopmain[2] > 0) { divisor += 1; }
@@ -1748,8 +1760,8 @@ namespace Monochampions_list
 				if (champtop[i] == divisor - notMains + 10) { champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 900) / divisor; }
 			}
 
-			 champmidmain = new int[10];
-			 champmid = new int[10];
+			champmidmain = new int[10];
+			champmid = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -1820,8 +1832,8 @@ namespace Monochampions_list
 			}
 
 
-			 champadcmain = new int[10];
-			 champadc = new int[10];
+			champadcmain = new int[10];
+			champadc = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -1895,8 +1907,8 @@ namespace Monochampions_list
 					champdict[enterchamp[i]] += ((divisor - (divisor - notMains)) * 100 - 900) / divisor;
 				}
 			}
-			 champsupmain = new int[10];
-			 champsup = new int[10];
+			champsupmain = new int[10];
+			champsup = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
@@ -1971,8 +1983,8 @@ namespace Monochampions_list
 				}
 			}
 
-			 champjgmain = new int[10];
-			 champjg = new int[10];
+			champjgmain = new int[10];
+			champjg = new int[10];
 			contador = 0;
 			for (int i = 0; i < 10; i++)
 			{
