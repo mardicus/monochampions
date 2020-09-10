@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace Monochampions_list
 {
@@ -8,66 +9,27 @@ namespace Monochampions_list
 	{
 		static void Main(string[] args)
 		{
+			string dictPatch = @"C:\Users\thene\desktop\monochampions\champdict.txt";
+			string[] dictLines = File.ReadAllLines(dictPatch);
+			int[] dictInts = new int[dictLines.Length];
+			string[] dictStrings = new string[dictLines.Length];
+			for (int i = 0; i < dictLines.Length; i++)
+			{
+				string[] splitLines = dictLines[i].Split(' ');
+				dictStrings[i] = splitLines[0];
+				dictInts[i] = int.Parse(splitLines[1]);
+			}
+			Dictionary<string, int> champdict = new Dictionary<string, int>();
+			for (int i = 0; i < dictLines.Length; i++)
+			{
+				champdict.Add(dictStrings[i], dictInts[i]);
+			}
+
 			int top = 0;
 			int mid = 1;
 			int adc = 2;
 			int sup = 3;
 			int jg = 4;
-			Dictionary<string, int> champdict = new Dictionary<string, int>();
-			champdict.Add("skarner", 3700);
-			champdict.Add("karthus", 3655);
-			champdict.Add("swain", 3428);
-			champdict.Add("rammus", 2887);
-			champdict.Add("nunu", 2572);
-			champdict.Add("urgot", 2330);
-			champdict.Add("annie", 2029);
-			champdict.Add("ivern", 1852);
-			champdict.Add("singed", 1786);
-			champdict.Add("hecarim", 1730);
-			champdict.Add("zilean", 1395);
-			champdict.Add("aurelionsol", 1317);
-			champdict.Add("udyr", 1316);
-			champdict.Add("kog'maw", 1306);
-			champdict.Add("quinn", 1203);
-			champdict.Add("yorick", 794);
-			champdict.Add("heimerdinger", 710);
-			champdict.Add("dr.mundo", 616);
-			champdict.Add("shyvanna", 603);
-			champdict.Add("tahmkench", 600);
-			champdict.Add("galio", 599);
-			champdict.Add("wukong", 576);
-			champdict.Add("vi", 569);
-			champdict.Add("sion", 562);
-			champdict.Add("fiddlesticks", 514);
-			champdict.Add("nasus", 474);
-			champdict.Add("evelynn", 442);
-			champdict.Add("warwick", 417);
-			champdict.Add("tryndamere", 357);
-			champdict.Add("rengar", 353);
-			champdict.Add("cho'gath", 324);
-			champdict.Add("anivia", 302);
-			champdict.Add("olaf", 292);
-			champdict.Add("rek'sai", 283);
-			champdict.Add("lissandra", 262);
-			champdict.Add("kled", 254);
-			champdict.Add("amumu", 233);
-			champdict.Add("poppy", 223);
-			champdict.Add("xinzhao", 220);
-			champdict.Add("malzahar", 188);
-			champdict.Add("brand", 181);
-			champdict.Add("taliyah", 175);
-			champdict.Add("kayle", 163);
-			champdict.Add("garen", 160);
-			champdict.Add("masteryi", 153);
-			champdict.Add("azir", 135);
-			champdict.Add("ziggs", 134);
-			champdict.Add("fiora", 129);
-			champdict.Add("braum", 100);
-			champdict.Add("zac", 84);
-			champdict.Add("rumble", 80);
-			champdict.Add("illaoi", 67);
-			champdict.Add("khazix", 50);
-
 
 			int[,] championsRole = new int[100000, 5];
 			championsRole[champdict["karthus"], top] = 1;
@@ -119,8 +81,8 @@ namespace Monochampions_list
 			championsRole[champdict["quinn"], top] = 1;
 			championsRole[champdict["quinn"], adc] = 1;
 			championsRole[champdict["quinn"], mid] = 2;
-			championsRole[champdict["shyvanna"], top] = 1;
-			championsRole[champdict["shyvanna"], jg] = 2;
+			championsRole[champdict["shyvana"], top] = 1;
+			championsRole[champdict["shyvana"], jg] = 2;
 			championsRole[champdict["tahmkench"], top] = 2;
 			championsRole[champdict["tahmkench"], sup] = 1;
 			championsRole[champdict["yorick"], top] = 2;
@@ -198,16 +160,37 @@ namespace Monochampions_list
 			championsRole[champdict["masteryi"], top] = 1;
 			championsRole[champdict["masteryi"], jg] = 2;
 
+			string watchlistpatch = @"C:\Users\thene\Desktop\monochampions\watchlist.txt";
+			Console.WriteLine("Watchlist");
+			string[] watchlist = File.ReadAllLines(watchlistpatch);
+			foreach (string x in watchlist)
+			{
+				Console.WriteLine(x);
+			}
+			Console.WriteLine();
 			Console.WriteLine("BRONZE:");
 			string[] enterchamp = Console.ReadLine().Split(" ");
-
-			;
 			int[] champScore = new int[10];
-			for (int i = 0; i < 10; i++)
-			{
-				champScore[i] = champdict[enterchamp[i]];
-			}
 
+			try
+			{
+				for (int i = 0; i < 10; i++)
+				{
+					champScore[i] = champdict[enterchamp[i]];
+				}
+			}
+			catch(System.Collections.Generic.KeyNotFoundException e)
+			{
+				Console.WriteLine("Typo error");
+				Console.WriteLine(e.Message);
+
+				enterchamp = Console.ReadLine().Split(" ");
+				champScore = new int[10];
+				for (int i = 0; i < 10; i++)
+				{
+					champScore[i] = champdict[enterchamp[i]];
+				}
+			}
 			int[] champtopmain = new int[10];
 			int[] champtop = new int[10];
 			int contador = 0;
@@ -638,8 +621,8 @@ namespace Monochampions_list
 			championsRole[champdict["quinn"], top] = 1;
 			championsRole[champdict["quinn"], adc] = 1;
 			championsRole[champdict["quinn"], mid] = 2;
-			championsRole[champdict["shyvanna"], top] = 1;
-			championsRole[champdict["shyvanna"], jg] = 2;
+			championsRole[champdict["shyvana"], top] = 1;
+			championsRole[champdict["shyvana"], jg] = 2;
 			championsRole[champdict["tahmkench"], top] = 2;
 			championsRole[champdict["tahmkench"], sup] = 1;
 			championsRole[champdict["yorick"], top] = 2;
@@ -718,10 +701,24 @@ namespace Monochampions_list
 			championsRole[champdict["masteryi"], jg] = 2;
 			enterchamp = Console.ReadLine().Split(" ");
 
-			champScore = new int[10];
-			for (int i = 0; i < 10; i++)
+			try
 			{
-				champScore[i] = champdict[enterchamp[i]];
+				for (int i = 0; i < 10; i++)
+				{
+					champScore[i] = champdict[enterchamp[i]];
+				}
+			}
+			catch (System.Collections.Generic.KeyNotFoundException e)
+			{
+				Console.WriteLine("Typo error");
+				Console.WriteLine(e.Message);
+
+				enterchamp = Console.ReadLine().Split(" ");
+				champScore = new int[10];
+				for (int i = 0; i < 10; i++)
+				{
+					champScore[i] = champdict[enterchamp[i]];
+				}
 			}
 
 			champtopmain = new int[10];
@@ -1152,8 +1149,8 @@ namespace Monochampions_list
 			championsRole[champdict["quinn"], top] = 1;
 			championsRole[champdict["quinn"], adc] = 1;
 			championsRole[champdict["quinn"], mid] = 2;
-			championsRole[champdict["shyvanna"], top] = 1;
-			championsRole[champdict["shyvanna"], jg] = 2;
+			championsRole[champdict["shyvana"], top] = 1;
+			championsRole[champdict["shyvana"], jg] = 2;
 			championsRole[champdict["tahmkench"], top] = 2;
 			championsRole[champdict["tahmkench"], sup] = 1;
 			championsRole[champdict["yorick"], top] = 2;
@@ -1233,9 +1230,24 @@ namespace Monochampions_list
 			enterchamp = Console.ReadLine().Split(" ");
 
 			champScore = new int[10];
-			for (int i = 0; i < 10; i++)
+			try
 			{
-				champScore[i] = champdict[enterchamp[i]];
+				for (int i = 0; i < 10; i++)
+				{
+					champScore[i] = champdict[enterchamp[i]];
+				}
+			}
+			catch (System.Collections.Generic.KeyNotFoundException e)
+			{
+				Console.WriteLine("Typo error");
+				Console.WriteLine(e.Message);
+
+				enterchamp = Console.ReadLine().Split(" ");
+				champScore = new int[10];
+				for (int i = 0; i < 10; i++)
+				{
+					champScore[i] = champdict[enterchamp[i]];
+				}
 			}
 
 			champtopmain = new int[10];
@@ -1665,8 +1677,8 @@ namespace Monochampions_list
 			championsrole2[champdict["quinn"], top] = 1;
 			championsrole2[champdict["quinn"], adc] = 1;
 			championsrole2[champdict["quinn"], mid] = 2;
-			championsrole2[champdict["shyvanna"], top] = 1;
-			championsrole2[champdict["shyvanna"], jg] = 2;
+			championsrole2[champdict["shyvana"], top] = 1;
+			championsrole2[champdict["shyvana"], jg] = 2;
 			championsrole2[champdict["tahmkench"], top] = 2;
 			championsrole2[champdict["tahmkench"], sup] = 1;
 			championsrole2[champdict["yorick"], top] = 2;
@@ -1746,9 +1758,24 @@ namespace Monochampions_list
 			enterchamp = Console.ReadLine().Split(" ");
 
 			champScore = new int[10];
-			for (int i = 0; i < 10; i++)
+			try
 			{
-				champScore[i] = champdict[enterchamp[i]];
+				for (int i = 0; i < 10; i++)
+				{
+					champScore[i] = champdict[enterchamp[i]];
+				}
+			}
+			catch (System.Collections.Generic.KeyNotFoundException e)
+			{
+				Console.WriteLine("Typo error");
+				Console.WriteLine(e.Message);
+
+				enterchamp = Console.ReadLine().Split(" ");
+				champScore = new int[10];
+				for (int i = 0; i < 10; i++)
+				{
+					champScore[i] = champdict[enterchamp[i]];
+				}
 			}
 
 			champtopmain = new int[10];
@@ -2187,8 +2214,8 @@ namespace Monochampions_list
 			championsrole2[champdict["quinn"], top] = 1;
 			championsrole2[champdict["quinn"], adc] = 1;
 			championsrole2[champdict["quinn"], mid] = 2;
-			championsrole2[champdict["shyvanna"], top] = 1;
-			championsrole2[champdict["shyvanna"], jg] = 2;
+			championsrole2[champdict["shyvana"], top] = 1;
+			championsrole2[champdict["shyvana"], jg] = 2;
 			championsrole2[champdict["tahmkench"], top] = 2;
 			championsrole2[champdict["tahmkench"], sup] = 1;
 			championsrole2[champdict["yorick"], top] = 2;
@@ -2266,6 +2293,9 @@ namespace Monochampions_list
 			championsrole2[champdict["masteryi"], top] = 1;
 			championsrole2[champdict["masteryi"], jg] = 2;
 
+			string top3roles = @"C:\Users\thene\desktop\monochampions\top3roles.txt";
+			File.Delete(top3roles);
+
 			for (int h = 0; h < 5; h++)
 			{
 				int i = 0;
@@ -2277,36 +2307,50 @@ namespace Monochampions_list
 						i++;
 					};
 				};
-				Console.WriteLine();
-				Console.WriteLine(roles[h]);
+				File.AppendAllText(top3roles,"\n");
+				File.AppendAllText(top3roles, roles[h]+"\n");
 				switch (h)
 				{
 					case 0:
-						Console.WriteLine(champions[0]);
-						Console.WriteLine(champions[1]);
-						Console.WriteLine(champions[2]);
+						File.AppendAllText(top3roles, champions[0]+"\n");
+						File.AppendAllText(top3roles, champions[1]+"\n");
+						File.AppendAllText(top3roles, champions[2]+"\n");
 						break;
 					case 1:
-						Console.WriteLine(champions[3]);
-						Console.WriteLine(champions[4]);
-						Console.WriteLine(champions[5]);
+						File.AppendAllText(top3roles, champions[3]+"\n");
+						File.AppendAllText(top3roles, champions[4]+"\n");
+						File.AppendAllText(top3roles, champions[5]+"\n");
 						break;
 					case 2:
-						Console.WriteLine(champions[6]);
-						Console.WriteLine(champions[7]);
-						Console.WriteLine(champions[8]);
+						File.AppendAllText(top3roles, champions[6]+"\n");
+						File.AppendAllText(top3roles, champions[7]+"\n");
+						File.AppendAllText(top3roles, champions[8]+"\n");
 						break;
 					case 3:
-						Console.WriteLine(champions[9]);
-						Console.WriteLine(champions[10]);
-						Console.WriteLine(champions[11]);
+						File.AppendAllText(top3roles, champions[9]+"\n");
+						File.AppendAllText(top3roles, champions[10]+"\n");
+						File.AppendAllText(top3roles, champions[11]+"\n");
 						break;
 					case 4:
-						Console.WriteLine(champions[12]);
-						Console.WriteLine(champions[13]);
-						Console.WriteLine(champions[14]);
+						File.AppendAllText(top3roles, champions[12]+"\n");
+						File.AppendAllText(top3roles, champions[13]+"\n");
+						File.AppendAllText(top3roles, champions[14]+"\n");
 						break;
 				}
+			}
+
+			dictInts = new int[dictLines.Length];
+			dictStrings = new string[dictLines.Length];
+
+			dictStrings = champdict.Select(x => x.Key.ToString()).ToArray();
+
+			dictInts = champdict.Select(x => x.Value).ToArray();
+
+
+			File.Delete(dictPatch);
+			for (int i = 0; i < dictLines.Length; i++)
+			{
+				File.AppendAllText(dictPatch, dictStrings[i] + ' ' + dictInts[i] + "\n");
 			}
 		}
 	}
